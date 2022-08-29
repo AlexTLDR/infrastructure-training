@@ -12,4 +12,6 @@ EXPOSE 80
 
 # VOLUME [ "/app/node_modules"]
 
-CMD ["node", "server.js"]
+# In order to use nodemon commenting out the initial command
+# CMD ["node", "server.js"]
+CMD ["npm", "start"]
