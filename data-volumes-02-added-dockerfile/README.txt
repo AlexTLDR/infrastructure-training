@@ -12,3 +12,11 @@ docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "
 
 Short version for windows:
 docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "%cd%":/app -v /app/node_modules feedback-node:volumes 
+
+In order to rebuild the feedback-node:volumes image, run this command -> docker build -t feedback-node:volumes .
+
+Summary:
+
+docker run -v /app/data ...                 -> Anonymus volume
+docker run -v data:/app/data ...            -> Named volume
+docker run -v /path/to/code:/app/code ...   -> Bind Mount
