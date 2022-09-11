@@ -29,6 +29,12 @@ For Environment Variables & .env Files
 for Variables -> docker run -d -p 3000:8000 --env PORT=8000 --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd):/app:ro" -v /app/node_modules -v /app/temp feedback-node:env
 
 for .env files -> docker run -d -p 3000:8000 --env-file ./.env --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd):/app:ro" -v /app/node_modules -v /app/temp feedback-node:env
+
+For using Build Arguments (ARG)
+
+docker build -t feedback-node:web-app .    -> is using the instruction from the docker file - ARG DEFAULT_PORT=80
+docker build -t feedback-node:dev --build-arg DEFAULT_PORT=8000 .  -> is overwriting the default port to 8000 instead of 80 from the dockerfile
+
 Summary:
 
 docker run -v /app/data ...                 -> Anonymus volume
