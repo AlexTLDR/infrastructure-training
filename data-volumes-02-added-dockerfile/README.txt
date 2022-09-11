@@ -15,6 +15,15 @@ docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "
 
 In order to rebuild the feedback-node:volumes image, run this command -> docker build -t feedback-node:volumes .
 
+For READ only:
+
+docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "add the path of the project's folder keeping the quotes 
+in oprder for the command not to break if you have whitespaces in the path:ro" -v /app/node_modules -v /app/temp feedback-node:volumes
+
+for unix -> docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd):/app:ro" -v /app/node_modules -v /app/temp feedback-node:volumes
+for windows -> docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "%cd%":/app:ro -v /app/node_modules -v /app/temp feedback-node:volumes 
+-add :ro at the container's external path
+
 Summary:
 
 docker run -v /app/data ...                 -> Anonymus volume
