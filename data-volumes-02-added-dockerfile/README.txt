@@ -24,6 +24,11 @@ for unix -> docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/f
 for windows -> docker run -d -p 3000:80 --rm --name feedback-app -v feedback:/app/feedback -v "%cd%":/app:ro -v /app/node_modules -v /app/temp feedback-node:volumes 
 -add :ro at the container's external path
 
+For Environment Variables & .env Files
+
+for Variables -> docker run -d -p 3000:8000 --env PORT=8000 --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd):/app:ro" -v /app/node_modules -v /app/temp feedback-node:env
+
+for .env files -> docker run -d -p 3000:8000 --env-file ./.env --rm --name feedback-app -v feedback:/app/feedback -v "$(pwd):/app:ro" -v /app/node_modules -v /app/temp feedback-node:env
 Summary:
 
 docker run -v /app/data ...                 -> Anonymus volume
