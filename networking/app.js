@@ -68,7 +68,8 @@ app.get('/people', async (req, res) => {
 });
 
 mongoose.connect(
-  'mongodb://172.17.0.2:27017/swfavorites',
+  //'mongodb://172.17.0.2:27017/swfavorites', -> for container to container communication
+  'mongodb://mongodb:27017/swfavorites', //the name of the other container from the network
   { useNewUrlParser: true },
   (err) => {
     if (err) {
