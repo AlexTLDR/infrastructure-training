@@ -24,4 +24,4 @@ Docker Networks
 3. create the mongo container -> docker run -d --name mongodb --network favorites-net mongo
 4. in the app.js file, change the mongoose.connect -> 'mongodb://the name of the container from the network:27017/swfavorites' -> 'mongodb://mongodb:27017/swfavorites'
 5. build the container -> docker build -t favorites-node .
-6. run the container in the new network -> 
+6. run the container in the new network -> docker run --name favorites -d --rm --network favorites-net favorites-node
