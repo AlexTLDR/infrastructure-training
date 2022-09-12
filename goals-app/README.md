@@ -12,5 +12,5 @@ create the Dockerfile inside the backend folder and add the network details mong
 
 docker build -t goals-node .
 
- docker run --name goals-backend --rm --network goal-net goals-node -> check if mongoose.connect is configured to use mongodb://mongodb before running the docker run command
+ docker run --name goals-backend -d --rm --network goals-net goals-node -> check if mongoose.connect is configured to use mongodb://mongodb before running the docker run command
 
