@@ -14,7 +14,7 @@ create the Dockerfile inside the backend folder and add the network details mong
 
 docker build -t goals-node .
 
- docker run --name goals-backend -d --rm -p 80:80 --network goals-net goals-node -> check if mongoose.connect is configured to use mongodb://alex:secret@mongodb:27017/course-goals?authSource=admin before running the docker run command
+ docker run --name goals-backend -d -v "$(pwd):/app" -v logs:/app/logs -v /app/node_modules -e MONGODB_USERNAME=alex -e MONGODB_PASSWORD=secret --rm -p 80:80 --network goals-net goals-node -> check if mongoose.connect is configured to use mongodb://alex:secret@mongodb:27017/course-goals?authSource=admin before running the docker run command
 
  if any MongoDB auth issues, use docker volume prune to remove all unused volumes which mai affect the new credentials
 
