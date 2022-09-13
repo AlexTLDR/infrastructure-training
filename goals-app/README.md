@@ -1,3 +1,5 @@
+Without Docker Compose
+
 For BACKEND
 
 1. create the docker network
@@ -26,3 +28,7 @@ For FRONTEND
 2. docker build -t goals-react .  -> to rebuild the image with the correct docker network configured
 
 3. docker run -v "$(pwd)/src:/app/src" --name goals-frontend --rm --network goals-net -p 3000:3000 -it goals-react -> replace -it -d to run in detach mode
+
+With Docker Compose
+
+docker-compose up
