@@ -31,4 +31,12 @@ For FRONTEND
 
 With Docker Compose
 
-docker-compose up
+docker-compose up -> to start in attached mode
+docker-compose up -d -> to start in detach mode
+
+docker compose down -> to stop it, without removing the volumes
+docker compose down -v to stop it and remove the volumes
+
+* If the below error is received, in ~/.docker/config.json change credsStore to credStore. More details -> https://forums.docker.com/t/docker-credential-desktop-exe-executable-file-not-found-in-path-using-wsl2/100225/3
+
+error getting credentials - err: docker-credential-desktop resolves to executable in current directory (./docker-credential-desktop), out: ``
