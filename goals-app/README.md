@@ -31,8 +31,8 @@ For FRONTEND
 
 With Docker Compose
 
-docker-compose up -> to start in attached mode
-docker-compose up -d -> to start in detach mode
+docker compose up -> to start in attached mode
+docker compose up -d -> to start in detach mode
 
 docker compose down -> to stop it, without removing the volumes
 docker compose down -v to stop it and remove the volumes
