@@ -13,3 +13,7 @@ DB_PASSWORD=secret
 Starting only the server, php and mysql services from the yaml file:
 
 docker-compose up -d --build server -> only the server tag is required as the yaml file has the depends_on (php mysql) under the server services. Also use the --build so docker rebuilds the images, in case something changed
+
+Artisan command
+
+docker-compose run --rm artisan migrate
