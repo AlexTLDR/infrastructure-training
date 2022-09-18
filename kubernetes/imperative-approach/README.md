@@ -30,3 +30,11 @@ first-app-686c9dcf97-pgmxv   1/1     Running   4 (4m5s ago)   29m
 first-app-686c9dcf97-vmj9r   1/1     Running   0              14s
 
 3. kubectl scale deployment/first-app --replicas=1 -> to scale back to 1
+
+Updating Deployments
+
+1. update the source code
+2. docker build -t alextldr/k8s-first-app:2 .  -> give a tag to the build command, like the version
+3. docker push alextldr/k8s-first-app:2
+4. kubectl set image deployment/first-app k8s-first-app=alextldr/k8s-first-app:2
+5. kubectl rollout status deployment/first-app
