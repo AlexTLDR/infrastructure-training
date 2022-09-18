@@ -12,3 +12,9 @@ Commands to run:
 7. kubectl get deployments -> to check if the deployment is created 
 8. kubectl get pods -> to check the pods
 9. minikube dashboard -> to open the dashboard in the browser
+
+Create the service so the pod is accessible (exposed):
+
+1. kubectl expose deployment first-app --type=LoadBalancer --port=8080 
+2. kubectl get services -> since it is a local deployment, it can be seen that no accessible IP is present under external ip
+3. minikube service first-app -> we get the URL and usually a popup in the browser with the URL
