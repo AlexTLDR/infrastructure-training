@@ -17,3 +17,11 @@ Run the application
 1. After the instance is created, click on View Service
 2. In the task tab, click on the task's name and get the public IP
 3. Paste the public IP in the browser and the page will load
+
+To update the application (after the code has been modified on your local machine)
+
+1. docker build -t node-dep-example-1 .
+2. docker tag node-dep-example-1 alextldr/aws-example-1
+3. if not logged, log in to docker -> docker login
+4. push the image to docker hub -> docker push alextldr/aws-example-1
+5. in AWS go to clusters -> default -> task and create a new task revision and update service
