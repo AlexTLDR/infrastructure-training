@@ -38,3 +38,53 @@ Updating Deployments
 3. docker push alextldr/k8s-first-app:2
 4. kubectl set image deployment/first-app k8s-first-app=alextldr/k8s-first-app:2
 5. kubectl rollout status deployment/first-app
+
+Deployment Rollback & History
+
+1. Create a brocken update -> kubectl set image deployment/first-app k8s-first-app=alextldr/k8s-first-app:3  (using version 3 in the tag, which doesn't exist)
+2. kubectl rollout status deployment/first-app  -> I am stuck in a loop, exit with ctr+c
+3. kubectl get pods -> to see the stuck pod
+
+NAME                         READY   STATUS         RESTARTS   AGE
+first-app-6574bc56d6-j9glg   0/1     ErrImagePull   0          66s
+first-app-6c698d97d5-9dccm   1/1     Running        0          7m55s
+
+4. kubectl rollout undo deployment/first-app    -> to undo the latest deployment
+5.  kubectl get pods                            -> the "problematic" pod is gone
+
+NAME                         READY   STATUS    RESTARTS   AGE
+first-app-6c698d97d5-9dccm   1/1     Running   0          10m
+
+To go back to an even older deployment
+
+1. kubectl rollout history deployment/first-app
+
+deployment.apps/first-app 
+REVISION  CHANGE-CAUSE
+1         <none>
+3         <none>
+4         <none>
+
+2. kubectl rollout history deployment/first-app --revision=3 -> we can see the image version, in this case the brocHello from this NodeJS app!!!!!!
+<>This is new for updating purpose!!!!!
+Try sending a request to /error and see what happensken image
+
+deployment.apps/first-app with revision #3
+Pod Template:
+  Labels:       app=first-app
+        pod-template-hash=6574bc56d6
+  Containers:
+   k8s-first-app:
+    Image:      alextldr/k8s-first-app:3
+    Port:       <none>
+    Host Port:  <none>
+    Environment:        <none>
+    Mounts:     <none>
+  Volumes:      <none>
+
+3. kubectl rollout undo deployment/first-app --to-revision=1  -> to go back to revision 1
+
+Cleanup:
+
+1. kubectl delete service first-app
+2. kubectl delete deployment first-app
