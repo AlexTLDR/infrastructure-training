@@ -18,3 +18,15 @@ Create the service so the pod is accessible (exposed):
 1. kubectl expose deployment first-app --type=LoadBalancer --port=8080 
 2. kubectl get services -> since it is a local deployment, it can be seen that no accessible IP is present under external ip
 3. minikube service first-app -> we get the URL and usually a popup in the browser with the URL
+
+Scaling
+
+1. kubectl scale deployment/first-app --replicas=3
+2. kubectl get pods -> 3 pods will be listed 
+
+NAME                         READY   STATUS    RESTARTS       AGE
+first-app-686c9dcf97-6gpjg   1/1     Running   0              14s
+first-app-686c9dcf97-pgmxv   1/1     Running   4 (4m5s ago)   29m
+first-app-686c9dcf97-vmj9r   1/1     Running   0              14s
+
+3. kubectl scale deployment/first-app --replicas=1 -> to scale back to 1
