@@ -12,3 +12,9 @@ AWS deployment:
 5. Download the key pair (if it is lost, AWS will not generate a new one so the virtual machine will need to be deleted)
 6. Launch instance
 7. On the connect tab,select ssh client and you will have all the info required to ssh into the new machine
+
+On the AWS machine (since I used AWS linux, I will use the yum package manager):
+
+1. update the os -> sudo yum update -y
+2. install docker -> sudo amazon-linux-extras install docker
+3. start docker -> sudo service docker start
