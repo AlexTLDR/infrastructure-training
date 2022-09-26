@@ -14,4 +14,10 @@ spec:
     spec:
       containers:
       - name: story
-        image: alextldr/k8s-data-demo
+        image: alextldr/k8s-data-demo:1
+        volumeMounts: 
+          - mountPath: /app/story
+            name: story-volume
+      volumes:
+        - name: story-volume
+          emptyDir: {}
