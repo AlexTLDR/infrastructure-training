@@ -5,9 +5,11 @@ metadata:
 spec: 
   replicas: 1
   selector:
-    matchLabels:
+     matchLabels:
       app: declarative-app
       tier: backend
+    # matchExpressions:
+    #  - {key: app, operator: In, values: [declarative-app,first-app]}
   template:
     metadata: 
       labels: 
