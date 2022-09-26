@@ -17,7 +17,11 @@ spec:
         image: alextldr/k8s-data-demo:2
         env:
           - name: STORY_FOLDER
-            value: 'story'
+          #  value: 'story'
+            valueFrom:
+              configMapKeyRef:
+                name: data-store-env
+                key: folder
         volumeMounts: 
           - mountPath: /app/story
             name: story-volume

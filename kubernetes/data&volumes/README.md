@@ -27,3 +27,9 @@ docker build -t alextldr/k8s-data-demo:2 .
 
 2. docker push alextldr/k8s-data-demo:2
 3. kubectl apply -f=deployment.yaml
+
+Using a config map (with the environment.yaml file):
+
+1. kubectl apply -f=environment.yaml
+2. kubectl get configmap -> to list all the config maps
+3. kubectl apply -f=deployment.yaml
