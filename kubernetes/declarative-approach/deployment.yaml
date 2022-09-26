@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: declarative-deployment
+spec: 
+  replicas: 1
+  selector:
+    matchLabels:
+      app: declarative-app
+      tier: backend
+  template:
+    metadata: 
+      labels: 
+        app: declarative-app
+        tier: backend
+    spec: 
+      containers:
+        - name: declarative-node
+          image: alextldr/k8s-first-app:2
+        # - name: 
+        #  image:
