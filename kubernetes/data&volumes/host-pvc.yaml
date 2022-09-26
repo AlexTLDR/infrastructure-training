@@ -6,5 +6,7 @@ spec:
   volumeName: host-pvc
   accessModes:
     - ReadWriteOnce
+  storageClassName: standard
   resources:
-    storage: 1Gi
+    requests:
+      storage: 1Gi
