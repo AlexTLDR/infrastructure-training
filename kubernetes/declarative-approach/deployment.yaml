@@ -19,5 +19,11 @@ spec:
       containers:
         - name: declarative-node
           image: alextldr/k8s-first-app:2
+          livenessProbe:
+            httpGet: 
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 5
         # - name: 
         #  image:
