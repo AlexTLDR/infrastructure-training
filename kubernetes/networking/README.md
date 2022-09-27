@@ -13,4 +13,25 @@ What I did to prepare the docker images for the first deployment
 For k8s I will add all the yaml files in the kubernetes folder
 
 1. cd into the kubernetes folder and run -> kubectl apply -f=users-deployment.yaml
-2. 
+2. kubectl apply -f=users-service.yaml
+3. minikube service users-service
+4. try the APIs with Postman:
+- copy the URL from minikube
+- post the URL/login with the below Body as JSON
+
+{
+    "email": "test@test.de",
+    "password": "testers"
+}
+
+- after clicking send, a tocken should be returned
+
+{
+    "token": "abc"
+}
+
+- change to URL/signup and post and the user created message will be retrieved
+
+{
+    "message": "User created!"
+}
