@@ -14,4 +14,6 @@ spec:
     spec:
       containers:
         - name: users
-          image: alextldr/k8s-demo-users
+          image: alextldr/k8s-demo-users:latest
+        - name: auth
+          image: alextldr/k8s-demo-auth:latest
