@@ -4,6 +4,8 @@ Check if any deployments are running:
 
 1. kubectl get deployments 
 2. kubectl delete deploy <name of the running deployment>
+3. kubectl get service
+4. kubectl delete service <name of the service/s>
 
 What I did to prepare the docker images for the first deployment
 
