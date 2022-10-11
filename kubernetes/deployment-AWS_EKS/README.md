@@ -51,7 +51,21 @@ Adding Worker Nodes
 Applying the Kubernetes Config
 
 1. from the kubernetes folder run -> kubectl apply -f=auth.yaml -f=users.yaml
-2. kubectl get services -> to get the URL of the users-service -> and test it with postman
+2. kubectl get services -> to get the URL of the users-service -> and test it with postman (end of the file)
+
+Volumes
+
+1. go to -> https://github.com/kubernetes-sigs/aws-efs-csi-driver
+2. unsder installation, use the stable driver command -> kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.3" -> to install the driver
+3. go to EC2 in aws console and create a new security group
+4. give it a name and under VPC check that the eksVPC is selected (should be selected by default) 
+5. inbound rules -> add rule -> and from vpc, select the ip of the network that was created and paste it in the source tab, custom and the ip (192.168.0.0/16)
+6. click create security group 
+7. open the efs page and click on create file system
+8. give it a name and select the eks network and click on customize
+9. in the security groups, remove the default ones and add the eks efs group that was just created
+10. next, next and create
+11. copy the file system id and add it in the users.yaml file as the volumeHandle
 
 To test with postman
 
