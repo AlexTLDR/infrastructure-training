@@ -47,3 +47,45 @@ Adding Worker Nodes
 8. in the review page, give the role a name and click create role
 9. go to the cluster page from step 1 and in the Node IAM role select the newly created role and click next
 10. in the instance type select from t3.small to bigger (avoid the micro as it can return errors) -> next, next, create
+
+Applying the Kubernetes Config
+
+1. from the kubernetes folder run -> kubectl apply -f=auth.yaml -f=users.yaml
+2. kubectl get services -> to get the URL of the users-service -> and test it with postman
+
+To test with postman
+
+1. POST a9ebcd390a8dc4cbe9a88ade2cb47c58-585816499.eu-central-1.elb.amazonaws.com/signup
+- under Body -> raw -> JSON
+
+{
+    "email": "test@test.com",
+    "password": "secrettest"
+}
+
+- it should return something like:
+
+{
+    "message": "User created.",
+    "user": {
+        "_id": "6345c9f5bbcb27fc4cb530ce",
+        "email": "test@test.com",
+        "password": "$2a$12$BJIHA0JPKfDsKSS8aDn50.n9erLxZVoUqDjLkWUABqFrrKJAc4Ftu",
+        "__v": 0
+    }
+}
+
+2. POST a9ebcd390a8dc4cbe9a88ade2cb47c58-585816499.eu-central-1.elb.amazonaws.com/login
+- under Body -> raw -> JSON
+
+{
+    "email": "test@test.com",
+    "password": "secrettest"
+}
+
+- it should return something like:
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjU1MTgyNzgsImV4cCI6MTY2NTUyMTg3OH0.12FcvPi7farRYUi5_HVvICFHx1EbtDlq80M6k7sNkmY",
+    "userId": "6345c9f5bbcb27fc4cb530ce"
+}
