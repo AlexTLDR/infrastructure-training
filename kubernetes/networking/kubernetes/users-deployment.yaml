@@ -15,5 +15,8 @@ spec:
       containers:
         - name: users
           image: alextldr/k8s-demo-users:latest
+          env: 
+            - name: AUTH_ADDRESS
+              value: localhost
         - name: auth
           image: alextldr/k8s-demo-auth:latest

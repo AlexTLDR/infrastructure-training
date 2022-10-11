@@ -45,3 +45,24 @@ Users API - Auth API communication
 3. docker push alextldr/k8s-demo-auth
 4. from the users-api folder run docker build -t alextldr/k8s-demo-users .
 5. docker push alextldr/k8s-demo-users -> steps 4 and 5 are needed so that the latest image is used with the updated source code
+6. cd into the kubernetes folder and run kubectl apply -f=users-deployment.yaml -> to integrate the last updates
+7. try the APIs with Postman:
+- copy the URL from minikube
+- post the URL/login with the below Body as JSON
+
+{
+    "email": "test@test.de",
+    "password": "testers"
+}
+
+- after clicking send, a tocken should be returned
+
+{
+    "token": "abc"
+}
+
+- change to URL/signup and post and the user created message will be retrieved
+
+{
+    "message": "User created!"
+}
