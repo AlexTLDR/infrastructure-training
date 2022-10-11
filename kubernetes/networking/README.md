@@ -74,6 +74,8 @@ Connecting the tasks-api
     "title": "To do this!"
 }
 
+---------------------------------------------------------------------------------------------
+
 TEST the APIs with Postman:
 - copy the URL from minikube
 - post the URL/login with the below Body as JSON
