@@ -35,3 +35,15 @@ Added new context arn:aws:eks:eu-central-1:722527461667:cluster/kub-dep-demo to 
 
 7. minikube delete -> to delete the minikube cluster
 
+Adding Worker Nodes
+
+1. in the cluster, go to the compute tab and click on Add Node Group
+2. give the node a name and configure an IAM role for it
+3. open the IAM dashboard
+4. go to roles -> create role
+5. select EC2 and next
+6. under policies search for eksworker and add the policy
+7. the same add the cni, ec2containerreg (just the read only) policies and click on next
+8. in the review page, give the role a name and click create role
+9. go to the cluster page from step 1 and in the Node IAM role select the newly created role and click next
+10. in the instance type select from t3.small to bigger (avoid the micro as it can return errors) -> next, next, create
