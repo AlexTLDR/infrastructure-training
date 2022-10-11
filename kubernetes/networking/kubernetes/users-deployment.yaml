@@ -17,4 +17,5 @@ spec:
           image: alextldr/k8s-demo-users:latest
           env: 
             - name: AUTH_ADDRESS
-              value: "10.97.135.78"
+              # value: "10.97.135.78"
+              value: "auth-service.default"

@@ -40,6 +40,19 @@ Creating Multiple Deployments
 7. push the new image to docker hub -> docker push alextldr/k8s-demo-users
 8. from the kubernetes folder run -> kubectl delete -f=users-deployment.yaml
 9. kubectl apply -f=users-deployment.yaml
+10. test the APIs (last part of the readme)
+
+Using DNS for Pod to Pod Communication
+
+1. kubectl get namespaces -> 
+NAME              STATUS   AGE
+default           Active   15d
+kube-node-lease   Active   15d
+kube-public       Active   15d
+kube-system       Active   15d
+2. in the users-deployment.yaml file, edit the environment value to -> value: "auth-service.default" -> as we are using the default name space
+3. kubectl apply -f=users-deployment.yaml
+4. test the APIs (last part of the readme)
 
 TEST the APIs with Postman:
 - copy the URL from minikube
