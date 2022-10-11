@@ -17,26 +17,7 @@ For k8s I will add all the yaml files in the kubernetes folder
 1. cd into the kubernetes folder and run -> kubectl apply -f=users-deployment.yaml
 2. kubectl apply -f=users-service.yaml
 3. minikube service users-service
-4. try the APIs with Postman:
-- copy the URL from minikube
-- post the URL/login with the below Body as JSON
-
-{
-    "email": "test@test.de",
-    "password": "testers"
-}
-
-- after clicking send, a tocken should be returned
-
-{
-    "token": "abc"
-}
-
-- change to URL/signup and post and the user created message will be retrieved
-
-{
-    "message": "User created!"
-}
+4. test the APIs (last part of the readme)
 
 Users API - Auth API communication
 
@@ -46,7 +27,21 @@ Users API - Auth API communication
 4. from the users-api folder run docker build -t alextldr/k8s-demo-users .
 5. docker push alextldr/k8s-demo-users -> steps 4 and 5 are needed so that the latest image is used with the updated source code
 6. cd into the kubernetes folder and run kubectl apply -f=users-deployment.yaml -> to integrate the last updates
-7. try the APIs with Postman:
+7. test the APIs (last part of the readme)
+
+Creating Multiple Deployments
+
+1. from the kubernetes folder run -> kubectl apply -f=auth-service.yaml -f=auth-deployment.yaml
+2. kubectl get services -> to see the IP address of the auth-service
+3. in the users-deployment.yaml file, change the localhost variable with the IP address from step 2 as a value for AUTH_ADDRESS
+4. kubectl apply -f=users-deployment.yaml
+5. for not using the IP manually I have changed the environment variable in the users-app.js file and now I am using the users-deployment.yaml file
+6. from the users-api folder, run docker build -t alextldr/k8s-demo-users .
+7. push the new image to docker hub -> docker push alextldr/k8s-demo-users
+8. from the kubernetes folder run -> kubectl delete -f=users-deployment.yaml
+9. kubectl apply -f=users-deployment.yaml
+
+TEST the APIs with Postman:
 - copy the URL from minikube
 - post the URL/login with the below Body as JSON
 
@@ -66,6 +61,3 @@ Users API - Auth API communication
 {
     "message": "User created!"
 }
-
-Creating Multiple Deployments
-

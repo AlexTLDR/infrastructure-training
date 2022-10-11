@@ -17,4 +17,4 @@ spec:
           image: alextldr/k8s-demo-users:latest
           env: 
             - name: AUTH_ADDRESS
-              value: localhost
+              value: "10.97.135.78"
