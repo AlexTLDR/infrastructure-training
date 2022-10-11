@@ -54,6 +54,26 @@ kube-system       Active   15d
 3. kubectl apply -f=users-deployment.yaml
 4. test the APIs (last part of the readme)
 
+Connecting the tasks-api
+
+1. created the task-deployment and task-service yaml files
+2. create the alextldr/k8s-demo-tasks on docker hub
+3. cd into the tasks-api folder and run -> docker build -t alextldr/k8s-demo-tasks .
+4. docker push alextldr/k8s-demo-tasks
+5. cd into the kubernetes folder and run -> kubectl apply -f=tasks-service.yaml -f=tasks-deployment.yaml
+6. for testing -> minikube service tasks-service -> andf in postman:
+- GET http://address provided by minikube service/tasks
+- under headers add key Authorization and value Bearer abc
+- at first, this will be returned:
+{
+    "message": "Loading the tasks failed."
+}
+- fix it by posting http://address provided by minikube service/tasks
+{
+    "text": "First task",
+    "title": "To do this!"
+}
+
 TEST the APIs with Postman:
 - copy the URL from minikube
 - post the URL/login with the below Body as JSON
