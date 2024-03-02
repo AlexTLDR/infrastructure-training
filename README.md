@@ -3,3 +3,5 @@ This is a training repo for me to use as I learn Docker and Kubernetes. It is ba
 For interested parties, the link to the course can be found below:
 
 https://www.udemy.com/course/docker-kubernetes-the-practical-guide/
+
+Also using this repo to practice terraform
