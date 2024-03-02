@@ -1,0 +1,9 @@
+# Ignore the secrets
+gcp-key
+cred.tfvars
+
+# Ignore the terraform state
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
