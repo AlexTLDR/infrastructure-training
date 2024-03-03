@@ -1,24 +1,3 @@
-variable "certificate" {
-  type    = map(string)
-  default = {}
-}
-
-variable "region" {
-  default = "europe-west10"
-}
-
-variable "zone" {
-  default = "europe-west10-a"
-}
-
-variable "project" {
-  default = "terraform-learn-416018"
-}
-
-variable "machine_type" {
-  default = "e2-micro"
-}
-
 provider "google" {
   region      = var.region
   zone        = var.zone
@@ -67,6 +46,6 @@ terraform {
   backend "gcs" {
     bucket = "terraform-learn-416018"
     prefix = "terraform/state"
-    
+
   }
 }

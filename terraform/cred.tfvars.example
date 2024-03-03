@@ -1,0 +1,8 @@
+# This is an example of the cred.tfvars file that I am using for the json key
+
+certificate = {
+  key = "PATH-TO/KEY-FILE.json"
+}
+
+
+# run the terraform commands with the -var-file=<FILENAME> flag 
