@@ -74,10 +74,11 @@ resource "google_compute_firewall" "http_firewall" {
 
   source_ranges = ["0.0.0.0/0"]
 }
-
+/*
 # bucket needs to be created before running terraform init
 # gsutil mb -p terraform-learn-416018 -c standard -l europe-west10 gs://terraform-learn-416018
 # this is a known limitation of terraform
+
 terraform {
   backend "gcs" {
     bucket = "terraform-learn-416018"
@@ -85,4 +86,5 @@ terraform {
 
   }
 }
+*/
 

@@ -4,6 +4,6 @@ cred.tfvars
 
 # Ignore the terraform state
 .terraform
-terraform.tfstate
-terraform.tfstate.backup
+*.tfstate
+*.tfstate.*
 .terraform.lock.hcl
