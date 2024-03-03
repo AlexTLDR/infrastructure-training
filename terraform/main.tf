@@ -3,16 +3,32 @@ variable "certificate" {
   default = {}
 }
 
+variable "region" {
+  default = "europe-west10"
+}
+
+variable "zone" {
+  default = "europe-west10-a"
+}
+
+variable "project" {
+  default = "terraform-learn-416018"
+}
+
+variable "machine_type" {
+  default = "e2-micro"
+}
+
 provider "google" {
-  region      = "europe-west10"
-  zone        = "europe-west10-a"
-  project     = "terraform-learn-416018"
+  region      = var.region
+  zone        = var.zone
+  project     = var.project
   credentials = var.certificate["key"]
 }
 
 resource "google_compute_instance" "default" {
   name         = "terraform-instance"
-  machine_type = "e2-micro"
+  machine_type = var.machine_type
   tags         = ["ssh"]
 
   boot_disk {
@@ -44,6 +60,9 @@ resource "google_compute_firewall" "http_firewall" {
   source_ranges = ["0.0.0.0/0"]
 }
 
+# bucket needs to be created before running terraform init
+# gsutil mb -p terraform-learn-416018 -c standard -l europe-west10 gs://terraform-learn-416018
+# this is a known limitation of terraform
 terraform {
   backend "gcs" {
     bucket = "terraform-learn-416018"
