@@ -43,3 +43,11 @@ resource "google_compute_firewall" "http_firewall" {
 
   source_ranges = ["0.0.0.0/0"]
 }
+
+terraform {
+  backend "gcs" {
+    bucket = "terraform-learn-416018"
+    prefix = "terraform/state"
+    
+  }
+}
