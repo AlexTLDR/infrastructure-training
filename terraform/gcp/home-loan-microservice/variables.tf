@@ -22,3 +22,23 @@ variable "environment" {
 variable "ip-cidr-range-west" {
   type = string
 }
+
+# kubernetes cluster
+
+variable "gke_cluster_name" {
+    type = string
+}
+
+variable "application_name" {
+    type = string
+}
+
+variable "gke_num_nodes" {
+    type = number
+    description = "number of gke nodes"
+}
+
+variable "machine_type" {
+    type = string
+    description = "machine type for gke nodes"
+}

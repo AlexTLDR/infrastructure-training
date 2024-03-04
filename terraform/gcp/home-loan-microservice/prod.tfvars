@@ -8,4 +8,4 @@ default-ip-cidr-range-west = "10.10.0.0/28"
 gke_cluster_name ="gke-prod"
 application_name= "home-loan-prod"
 gke_num_nodes= 1
-machine_type = "n1-standard-1"
+machine_type = "e2-micro"
