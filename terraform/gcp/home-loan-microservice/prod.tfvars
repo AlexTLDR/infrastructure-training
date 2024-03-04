@@ -1,0 +1,5 @@
+region                     = "europe-west3"
+zone                       = "europe-west3-c"
+project_project_id         = "terraform-learn-416018"
+environment                = "prod"
+default-ip-cidr-range-west = "10.10.0.0/28"
