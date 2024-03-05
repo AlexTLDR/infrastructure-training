@@ -42,3 +42,15 @@ variable "machine_type" {
     type = string
     description = "machine type for gke nodes"
 }
+
+# redis
+variable "tier" {
+    type = string
+    description = "tier for redis"
+}
+
+variable "memory_storage_name" {
+    type = string
+    description = "name for memory storage"
+}
+
