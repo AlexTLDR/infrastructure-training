@@ -7,3 +7,6 @@ cred.tfvars
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+
+# MacOS
+.DS_Store
