@@ -28,3 +28,32 @@ resource "google_container_node_pool" "primary_nodes" {
       }
     }
 }
+
+resource "google_redis_instance" "memory-store-primary" {
+    name = "${var.memory_storage_name}-memory-store-primary"
+    memory_size_gb = 1
+    region = var.region
+    authorized_network = google_compute_network.vpc.self_link
+    project = var.project_id
+    tier = var.tier
+}
+
+resource "google_storage_bucket" "cloud-storage-primary" {
+    name = "cs-${var.application_name}"
+    location = var.region
+    force_destroy = true
+    uniform_bucket_level_access = true
+
+    lifecycle_rule {
+      condition {
+        age = 3
+      }
+      action{
+        type = "SetStorageClass"
+        storage_class = "REGIONAL"
+      }
+    }
+    versioning {
+      enabled = false
+    }
+}
