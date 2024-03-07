@@ -3,7 +3,7 @@ resource "google_container_cluster" "primary" {
     # location = var.region # for learning purposes, we will use zone. This creates only one node pool instead of 3
     location = var.zone
     remove_default_node_pool = true
-    initial_node_count = 1
+    initial_node_count = 2
     default_max_pods_per_node = var.pods_per_nodes
     enable_shielded_nodes = true
     deletion_protection = "false"
