@@ -1,5 +1,5 @@
 module "microservice_production" {
-  source = "./modules/microservice-module"
+  source = "github.com/AlexTLDR/infrastructure-training/terraform/gcp/home-loan-microservice/modules/microservice-module"
 
   gke_cluster_name = "gke-home-loan-production"
   region           = var.region
