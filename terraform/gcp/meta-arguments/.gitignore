@@ -1,0 +1,12 @@
+# Ignore the secrets
+gcp-key
+cred.tfvars
+
+# Ignore the terraform state
+.terraform
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# MacOS
+.DS_Store
