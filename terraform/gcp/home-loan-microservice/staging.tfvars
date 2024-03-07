@@ -5,11 +5,11 @@ environment        = "staging"
 ip-cidr-range-west = "10.10.0.0/28"
 
 # microservices
-gke_cluster_name ="gke-staging"
-application_name= "home-loan-staging"
-gke_num_nodes= 1
-machine_type = "e2-micro"
+gke_cluster_name = "gke-staging"
+application_name = "home-loan-staging"
+gke_num_nodes    = 1
+machine_type     = "e2-micro"
 
 # redis
-tier = "BASIC"
+tier                = "BASIC"
 memory_storage_name = "redis-staging"
