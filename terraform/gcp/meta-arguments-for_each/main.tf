@@ -46,11 +46,11 @@
 # }
 
 module "ce_from_modules" {
-    for_each = var.virtual_machines_modules
-    source = "./modules/example"
-    ce_name = each.key
-    machine_type = each.value.vm_size
-    zone = each.value.zone
-    image = "debian-cloud/debian-12"
+  for_each     = var.virtual_machines_modules
+  source       = "./modules/example"
+  ce_name      = each.key
+  machine_type = each.value.vm_size
+  zone         = each.value.zone
+  image        = "debian-cloud/debian-12"
 
 }
