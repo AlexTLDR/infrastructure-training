@@ -1,3 +1,11 @@
+# terraform {
+#   required_providers {
+#     azurerm = {
+#       source = "hashicorp/azurerm"
+#     }
+#   }
+# }
+
 provider "azurerm" {
   features {}
 }
@@ -14,7 +22,7 @@ resource "azurerm_resource_group" "rg" {
 
   tags = {
     "Environment Type"  = "Test"
-    "Owner or Customer" = "Alex, DevOps"
+    "Owner or Customer" = "Alex,for DevOps POC"
     "Review Date"       = "March 2024"
   }
 }
@@ -49,7 +57,7 @@ resource "azurerm_public_ip" "devops_publicip" {
 
 resource "azurerm_network_interface" "devops_nic" { 
   count = var.vm_count
-  name = "devops-nic-${count.index}" 
+  name = "devops-nic-${count.index + 1}" 
   location = "westeurope" 
   resource_group_name = azurerm_resource_group.rg.name 
 
@@ -62,11 +70,11 @@ resource "azurerm_network_interface" "devops_nic" {
 
 resource "azurerm_windows_virtual_machine" "devops_poc_vm" {
   count                 = var.vm_count
-  name                  = "myvm${count.index + 1}"
+  name                  = "devops-poc-${count.index + 1}"
   location              = "westeurope"
   resource_group_name   = azurerm_resource_group.rg.name
-  network_interface_ids = [azurerm_network_interface.devops_nic.id]
-  size                  = "Standard_B1s"
+  network_interface_ids = [azurerm_network_interface.devops_nic[count.index].id]
+  size                  = "Standard_B1ls"
   admin_username        = "adminuser"
   admin_password        = "Password123!"
 
