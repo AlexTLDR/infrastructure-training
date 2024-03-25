@@ -13,7 +13,7 @@ provider "azurerm" {
 # TODO: Move the variables in a separate file
 variable "vm_count" {
   description = "Number of VMs to create"
-  default     = 2
+  default     = 1
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -25,6 +25,21 @@ resource "azurerm_resource_group" "rg" {
     "Owner or Customer" = "Alex,for DevOps POC"
     "Review Date"       = "March 2024"
   }
+}
+
+data "azurerm_virtual_network" "existing_vnet" {
+  name                = "Test-Azure-WestEurope"
+  resource_group_name = "Test-Azure-WestEurope-RG"
+}
+
+data "azurerm_subnet" "existing_subnet" {
+  name                 = "Front-End"
+  virtual_network_name = data.azurerm_virtual_network.existing_vnet.name
+  resource_group_name  = data.azurerm_virtual_network.existing_vnet.resource_group_name
+}
+
+locals {
+  vm_identifiers = { for i in range(var.vm_count) : "vm${i}" => i }
 }
 
 # Virtual Network and Subnet
@@ -56,24 +71,24 @@ resource "azurerm_public_ip" "devops_publicip" {
 # Network Interface
 
 resource "azurerm_network_interface" "devops_nic" { 
-  count = var.vm_count
-  name = "devops-nic-${count.index + 1}" 
+  for_each = local.vm_identifiers
+  name = "devops-nic-${each.value + 1}" 
   location = "westeurope" 
   resource_group_name = azurerm_resource_group.rg.name 
 
   ip_configuration { 
     name = "ipconfig1" 
-    subnet_id = azurerm_subnet.devops_subnet.id 
+    subnet_id = data.azurerm_subnet.existing_subnet.id 
     private_ip_address_allocation = "Dynamic" 
   }
 }
 
 resource "azurerm_windows_virtual_machine" "devops_poc_vm" {
-  count                 = var.vm_count
-  name                  = "devops-poc-${count.index + 1}"
+  for_each = local.vm_identifiers
+  name                  = "devops-poc-${each.value + 1}"
   location              = "westeurope"
   resource_group_name   = azurerm_resource_group.rg.name
-  network_interface_ids = [azurerm_network_interface.devops_nic[count.index].id]
+  network_interface_ids = [azurerm_network_interface.devops_nic[each.key].id]
   size                  = "Standard_B1ls"
   admin_username        = "adminuser"
   admin_password        = "Password123!"
